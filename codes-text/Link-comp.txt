@@ -1,0 +1,49 @@
+複数のページを作成
+
+～index.js～
+import Header from './header'
+import Link from 'next/link'
+
+export default function Home() {
+  const title = 'Index'
+
+  return (
+    <div>
+      <Header title={title} />
+      <h1 className='bg-primary text-white display-4'>React</h1>
+      <div className='container'>
+        <h3 className='my-3 text-primary text-center'>{title}</h3>
+        <div className='card p-3 text-center'>
+          <p>これは、ページ移動のサンプル</p>
+          <Link href='/other'>
+            <a>Go to Other page &gt;&gt;</a>
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+～other.js～
+import Header from "./header";
+import Link from "next/link";
+
+export default function Other() {
+    const title = 'Other'
+
+    return (
+    <div>
+        <Header title={title} />
+        <h1 className="bg-primary px-3 text-white display-4">React</h1>
+        <div className="container">
+            <h3 className="my-3 text-primary text-center">{title}</h3>
+            <div className="card p-3">
+                <p>これは、もうひとつのページ</p>
+                <Link href='/'>
+                    <a>&lt;&lt; Back to Index page</a>
+                </Link>
+            </div>
+        </div>
+    </div>
+    )
+}

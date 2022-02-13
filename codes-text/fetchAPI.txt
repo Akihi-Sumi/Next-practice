@@ -1,0 +1,55 @@
+fetch APIで、ＪＳＯＮデータにアクセスする
+
+～index.js～
+import Layout from '../components/layout'
+import { useEffect, useState } from 'react';
+
+export default function Home() {
+  const url='./data.json';
+  const [data,setData]=useState({message:'',data:[]});
+
+  useEffect(()=>{
+    fetch(url)
+    .then(res=>res.json())
+    .then(res=>setData(res))
+  },[])
+
+  return (
+    <div>
+      <Layout header='Next.js' title='Top page.'>
+        <div className='alert alert-primary text-center'>
+          <h5 className='mb-4'>Welcome to next.js</h5>
+
+          <table className='table bg-white'>
+            <thead className='table-dark'>
+              <tr>
+                <th>Name</th> <th>Mail</th> <th>Age</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {data.data.map((value, key)=> (
+                <tr key={key}>
+                  <th>{value.name}</th>
+                  <th>{value.mail}</th>
+                  <th>{value.age}</th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Layout>
+    </div>
+  )
+}
+
+～public/data.json～
+{
+    "message": "This is sample JSON data.",
+
+    "data": [
+        {"name":"taro", "mail":"taro@yamada", "age":39},
+        {"name":"hanako", "mail":"hanako@flower", "age":22},
+        {"name":"sachiko", "mail":"sachiko@happy", "age":17}
+    ]
+}

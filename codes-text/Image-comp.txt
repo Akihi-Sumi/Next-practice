@@ -1,0 +1,29 @@
+Imageコンポーネントを利用する
+※JPG画像を、「image.jpg」としてpublicディレクトリに入れる。
+
+～index.js～
+import Layout from '../components/layout'
+import MyImage from '../components/image'
+
+export default function Home() {
+  return (
+    <div>
+      <Layout header='Next.js' title='Top page.'>
+        <div className='alert alert-primary text-center'>
+          <h5 className='mb-4'>Welcome to next.js</h5>
+          <MyImage fname='image.jpg' size='600' />
+        </div>
+      </Layout>
+    </div>
+  )
+}
+
+～components/image.js～
+export default function MyImage(props) {
+    let fname = './' + props.fname
+    let size = props.size + 'px'
+
+    return (
+        <img width={size} border='1' src={fname} />
+    )
+}
